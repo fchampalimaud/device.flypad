@@ -1,0 +1,72 @@
+%YAML 1.1
+---
+# yaml-language-server: $schema=https://harp-tech.org/draft-02/schema/device.json
+device: FlyPAD
+whoAmI: 1201
+firmwareVersion: "1.0"
+hardwareTargets: "1.0"
+registers:
+  EnableAcquisition:
+    address: 32
+    access: Write
+    type: U8
+    maskType: EnableFlag
+    description: Starts or stops the data acquisition in all channels.
+  CapacitanceValues:
+    address: 33
+    access: Event
+    length: 64
+    type: U16
+    description: Value of ADC capacitance values for each channel (2 values per channel).
+  DI0State:
+    address: 34
+    access: Event
+    type: U8
+    maskType: DigitalState
+    description: State of the digital input pin 0.
+  DI1State:
+    address: 35
+    access: Event
+    type: U8
+    maskType: DigitalState
+    description: State of the digital input pin 1.
+  DigitalOutputSet: &outputs
+    address: 36
+    access: Write
+    type: U8
+    maskType: DigitalOutputs
+    description: Set the specified digital output lines.
+  DigitalOutputClear:
+    <<: *outputs
+    address: 37
+    description: Clears the specified digital output lines.
+  DigitalOutputToggle:
+    <<: *outputs
+    address: 38
+    description: Toggles the specified digital output lines.
+  DigitalOutputState:
+    address: 39
+    access: Write
+    type: U8
+    maskType: DigitalOutputs
+    description: Write the state of all digital output lines.
+  EnableEvents:
+    address: 40
+    access: Write
+    type: U8
+    maskType: OlfactometerEvents
+    description: Specifies the active events in the device.
+bitMasks:
+  DigitalOutputs:
+    description: Specifies the state of the digital outputs.
+    bits:
+      DO0: 0x1
+      DO1: 0x2
+      DO2: 0x4
+      DO3: 0x8
+groupMasks:
+  DigitalState:
+    description: The state of a digital pin.
+    values:
+      Low: 0
+      High: 1

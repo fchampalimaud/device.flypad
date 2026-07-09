@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{63123750-1207-4D2E-8BC5-485F6AFFBCFE}") = "FlyPAD", "FlyPAD\FlyPAD.cproj", "{9CE35E3E-9226-45AF-8AA5-8F726C1820B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9CE35E3E-9226-45AF-8AA5-8F726C1820B6}.Debug|AVR.ActiveCfg = Debug|AVR
+		{9CE35E3E-9226-45AF-8AA5-8F726C1820B6}.Debug|AVR.Build.0 = Debug|AVR
+		{9CE35E3E-9226-45AF-8AA5-8F726C1820B6}.Release|AVR.ActiveCfg = Release|AVR
+		{9CE35E3E-9226-45AF-8AA5-8F726C1820B6}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

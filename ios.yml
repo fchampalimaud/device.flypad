@@ -1,0 +1,66 @@
+# yaml-language-server: $schema=https://harp-tech.org/draft-02/schema/ios.json
+DO0:
+  port: PORTH
+  pinNumber: 0
+  direction: output
+  allowRead: true
+  initialState: low
+  description: Output DO0
+DO1:
+  port: PORTH
+  pinNumber: 1
+  direction: output
+  allowRead: true
+  initialState: low
+  description: Output DO1
+DO2:
+  port: PORTH
+  pinNumber: 2
+  direction: output
+  allowRead: true
+  initialState: low
+  description: Output DO2
+DO3:
+  port: PORTH
+  pinNumber: 3
+  direction: output
+  allowRead: true
+  initialState: low
+  description: Output DO3
+DI0:
+  port: PORTB
+  pinNumber: 0
+  direction: input
+  pinMode: pullup
+  triggerMode: toggle
+  interruptPriority: low
+  interruptNumber: 0
+  description: Digital Input 0
+DI1:
+  port: PORTC
+  pinNumber: 0
+  direction: input
+  pinMode: pullup
+  triggerMode: toggle
+  interruptPriority: low
+  interruptNumber: 0
+  description: Digital Input 1
+SDA11:
+  port: PORTD
+  pinNumber: 0
+  direction: input
+  pinMode: pullup
+  triggerMode: toggle
+  interruptPriority: off
+  interruptNumber: 0
+  description: I2C SDA line - Arena 1 Sensor 1
+SDA12:
+  port: PORTD
+  pinNumber: 1
+  direction: input
+  pinMode: pullup
+  triggerMode: toggle
+  interruptPriority: off
+  interruptNumber: 0
+  description: I2C SDA line - Arena 1 Sensor 2
+
