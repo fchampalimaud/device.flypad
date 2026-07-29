@@ -45,22 +45,235 @@ DI1:
   interruptPriority: low
   interruptNumber: 0
   description: Digital Input 1
+SCL:
+  port: PORTE
+  pinNumber: 1
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SCL line
 SDA11:
   port: PORTD
   pinNumber: 0
-  direction: input
-  pinMode: pullup
-  triggerMode: toggle
-  interruptPriority: off
-  interruptNumber: 0
+  direction: output
+  allowRead: true
+  initialState: low
   description: I2C SDA line - Arena 1 Sensor 1
 SDA12:
   port: PORTD
   pinNumber: 1
-  direction: input
-  pinMode: pullup
-  triggerMode: toggle
-  interruptPriority: off
-  interruptNumber: 0
+  direction: output
+  allowRead: true
+  initialState: low
   description: I2C SDA line - Arena 1 Sensor 2
+SDA13:
+  port: PORTD
+  pinNumber: 2
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 1 Sensor 3
+SDA14:
+  port: PORTD
+  pinNumber: 3
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 1 Sensor 4
+SDA21:
+  port: PORTD
+  pinNumber: 4
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 2 Sensor 1
+SDA22:
+  port: PORTD
+  pinNumber: 5
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 2 Sensor 2
+SDA23:
+  port: PORTD
+  pinNumber: 6
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 2 Sensor 3
+SDA24:
+  port: PORTD
+  pinNumber: 7
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 2 Sensor 4
+SDA31:
+  port: PORTE
+  pinNumber: 4
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 3 Sensor 1
+SDA32:
+  port: PORTE
+  pinNumber: 5
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 3 Sensor 2
+SDA33:
+  port: PORTE
+  pinNumber: 6
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 3 Sensor 3
+SDA34:
+  port: PORTE
+  pinNumber: 7
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 3 Sensor 4
+SDA41:
+  port: PORTF
+  pinNumber: 4
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 4 Sensor 1
+SDA42:
+  port: PORTF
+  pinNumber: 5
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 4 Sensor 2
+SDA43:
+  port: PORTF
+  pinNumber: 6
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 4 Sensor 3
+SDA44:
+  port: PORTF
+  pinNumber: 7
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 4 Sensor 4
+SDA51:
+  port: PORTH
+  pinNumber: 4
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 5 Sensor 1
+SDA52:
+  port: PORTH
+  pinNumber: 5
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 5 Sensor 2
+SDA53:
+  port: PORTH
+  pinNumber: 6
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 5 Sensor 3
+SDA54:
+  port: PORTH
+  pinNumber: 7
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 5 Sensor 4
+SDA61:
+  port: PORTJ
+  pinNumber: 0
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 6 Sensor 1
+SDA62:
+  port: PORTJ
+  pinNumber: 1
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 6 Sensor 2
+SDA63:
+  port: PORTJ
+  pinNumber: 2
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 6 Sensor 3
+SDA64:
+  port: PORTJ
+  pinNumber: 3
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 6 Sensor 4
+SDA71:
+  port: PORTA
+  pinNumber: 0
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 7 Sensor 1
+SDA72:
+  port: PORTA
+  pinNumber: 1
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 7 Sensor 2
+SDA73:
+  port: PORTA
+  pinNumber: 2
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 7 Sensor 3
+SDA74:
+  port: PORTA
+  pinNumber: 3
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 7 Sensor 4
+SDA81:
+  port: PORTB
+  pinNumber: 4
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 8 Sensor 1
+SDA82:
+  port: PORTB
+  pinNumber: 5
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 8 Sensor 2
+SDA83:
+  port: PORTB
+  pinNumber: 6
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 8 Sensor 3
+SDA84:
+  port: PORTB
+  pinNumber: 7
+  direction: output
+  allowRead: true
+  initialState: low
+  description: I2C SDA line - Arena 8 Sensor 4
 

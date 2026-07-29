@@ -384,7 +384,7 @@ namespace Harp.FlyPAD
         /// A task that represents the asynchronous read operation. The task result contains
         /// the register payload.
         /// </returns>
-        public async Task<OlfactometerEvents> ReadEnableEventsAsync(CancellationToken cancellationToken = default)
+        public async Task<Events> ReadEnableEventsAsync(CancellationToken cancellationToken = default)
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(EnableEvents.Address), cancellationToken);
             return EnableEvents.GetPayload(reply);
@@ -400,7 +400,7 @@ namespace Harp.FlyPAD
         /// A task that represents the asynchronous read operation. The task result contains
         /// the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<OlfactometerEvents>> ReadTimestampedEnableEventsAsync(CancellationToken cancellationToken = default)
+        public async Task<Timestamped<Events>> ReadTimestampedEnableEventsAsync(CancellationToken cancellationToken = default)
         {
             var reply = await CommandAsync(HarpCommand.ReadByte(EnableEvents.Address), cancellationToken);
             return EnableEvents.GetTimestampedPayload(reply);
@@ -414,7 +414,7 @@ namespace Harp.FlyPAD
         /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
         /// </param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteEnableEventsAsync(OlfactometerEvents value, CancellationToken cancellationToken = default)
+        public async Task WriteEnableEventsAsync(Events value, CancellationToken cancellationToken = default)
         {
             var request = EnableEvents.FromPayload(MessageType.Write, value);
             await CommandAsync(request, cancellationToken);

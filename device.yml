@@ -54,7 +54,7 @@ registers:
     address: 40
     access: Write
     type: U8
-    maskType: OlfactometerEvents
+    maskType: Events
     description: Specifies the active events in the device.
 bitMasks:
   DigitalOutputs:
@@ -64,6 +64,10 @@ bitMasks:
       DO1: 0x2
       DO2: 0x4
       DO3: 0x8
+  Events:
+    description: Specifies the events to be sent.
+    bits:
+      DigitalInputs: 0x1
 groupMasks:
   DigitalState:
     description: The state of a digital pin.

@@ -1177,9 +1177,9 @@ namespace Harp.FlyPAD
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static OlfactometerEvents GetPayload(HarpMessage message)
+        public static Events GetPayload(HarpMessage message)
         {
-            return (OlfactometerEvents)message.GetPayloadByte();
+            return (Events)message.GetPayloadByte();
         }
 
         /// <summary>
@@ -1187,10 +1187,10 @@ namespace Harp.FlyPAD
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<OlfactometerEvents> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<Events> GetTimestampedPayload(HarpMessage message)
         {
             var payload = message.GetTimestampedPayloadByte();
-            return Timestamped.Create((OlfactometerEvents)payload.Value, payload.Seconds);
+            return Timestamped.Create((Events)payload.Value, payload.Seconds);
         }
 
         /// <summary>
@@ -1202,7 +1202,7 @@ namespace Harp.FlyPAD
         /// A <see cref="HarpMessage"/> object for the <see cref="EnableEvents"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, OlfactometerEvents value)
+        public static HarpMessage FromPayload(MessageType messageType, Events value)
         {
             return HarpMessage.FromByte(Address, messageType, (byte)value);
         }
@@ -1218,7 +1218,7 @@ namespace Harp.FlyPAD
         /// A <see cref="HarpMessage"/> object for the <see cref="EnableEvents"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, OlfactometerEvents value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, Events value)
         {
             return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
         }
@@ -1242,7 +1242,7 @@ namespace Harp.FlyPAD
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<OlfactometerEvents> GetPayload(HarpMessage message)
+        public static Timestamped<Events> GetPayload(HarpMessage message)
         {
             return EnableEvents.GetTimestampedPayload(message);
         }
@@ -1737,13 +1737,13 @@ namespace Harp.FlyPAD
         /// Gets or sets the value that specifies the active events in the device.
         /// </summary>
         [Description("The value that specifies the active events in the device.")]
-        public OlfactometerEvents EnableEvents { get; set; }
+        public Events EnableEvents { get; set; }
 
         /// <summary>
         /// Creates a message payload for the EnableEvents register.
         /// </summary>
         /// <returns>The created message payload value.</returns>
-        public OlfactometerEvents GetPayload()
+        public Events GetPayload()
         {
             return EnableEvents;
         }
@@ -1790,6 +1790,16 @@ namespace Harp.FlyPAD
         DO1 = 0x2,
         DO2 = 0x4,
         DO3 = 0x8
+    }
+
+    /// <summary>
+    /// Specifies the events to be sent.
+    /// </summary>
+    [Flags]
+    public enum Events : byte
+    {
+        None = 0x0,
+        DigitalInputs = 0x1
     }
 
     /// <summary>
