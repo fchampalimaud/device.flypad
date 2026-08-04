@@ -127,7 +127,7 @@ uint16_t app_regs_n_elements[] = {
 
 uint8_t *app_regs_pointer[] = {
     (uint8_t*)(&app_regs.REG_ENABLE_ACQUISITION),
-    (uint8_t*)(&app_regs.REG_CAPACITANCE_VALUES),
+    (uint8_t*)(app_regs.REG_CAPACITANCE_VALUES),
     (uint8_t*)(&app_regs.REG_DI0_STATE),
     (uint8_t*)(&app_regs.REG_DI1_STATE),
     (uint8_t*)(&app_regs.REG_DIGITAL_OUTPUT_SET),

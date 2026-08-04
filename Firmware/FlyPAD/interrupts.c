@@ -31,6 +31,19 @@ extern AppRegs app_regs;
 /************************************************************************/
 ISR(PORTB_INT0_vect, ISR_NAKED)
 {
+	uint8_t reg_port_dis = app_regs.REG_DI0_STATE;
+	
+	app_regs.REG_DI0_STATE &= ~GM_DIGITAL_STATE_HIGH;
+	app_regs.REG_DI0_STATE |= (read_DI0) ? GM_DIGITAL_STATE_HIGH : 0;
+	
+	if (app_regs.REG_ENABLE_EVENTS & MSK_DIGITAL_STATE)
+	{
+		if (reg_port_dis != app_regs.REG_DI0_STATE)
+		{
+			core_func_send_event(ADD_REG_DI0_STATE, true);
+		}
+	}
+
 	reti();
 }
 
@@ -39,5 +52,18 @@ ISR(PORTB_INT0_vect, ISR_NAKED)
 /************************************************************************/
 ISR(PORTC_INT0_vect, ISR_NAKED)
 {
+	uint8_t reg_port_dis = app_regs.REG_DI1_STATE;
+	
+	app_regs.REG_DI1_STATE &= ~GM_DIGITAL_STATE_HIGH;
+	app_regs.REG_DI1_STATE |= (read_DI1) ? GM_DIGITAL_STATE_HIGH : 0;
+	
+	if (app_regs.REG_ENABLE_EVENTS & MSK_DIGITAL_STATE)
+	{
+		if (reg_port_dis != app_regs.REG_DI1_STATE)
+		{
+			core_func_send_event(ADD_REG_DI1_STATE, true);
+		}
+	}
+
 	reti();
 }

@@ -5,6 +5,7 @@
 #include "app.h"
 #include "app_funcs.h"
 #include "app_ios_and_regs.h"
+#include "i2c.h"
 
 /************************************************************************/
 /* Declare application registers                                        */
@@ -15,15 +16,6 @@ extern uint16_t app_regs_n_elements[];
 extern uint8_t *app_regs_pointer[];
 extern void (*app_func_rd_pointer[])(void);
 extern bool (*app_func_wr_pointer[])(void*);
-
-#define _1_CLOCK_CYCLES asm ( "nop \n")
-#define _2_CLOCK_CYCLES _1_CLOCK_CYCLES; _1_CLOCK_CYCLES
-#define _4_CLOCK_CYCLES _2_CLOCK_CYCLES; _2_CLOCK_CYCLES
-#define _8_CLOCK_CYCLES _4_CLOCK_CYCLES; _4_CLOCK_CYCLES
-#define _16_CLOCK_CYCLES _8_CLOCK_CYCLES; _8_CLOCK_CYCLES
-#define _32_CLOCK_CYCLES _16_CLOCK_CYCLES; _16_CLOCK_CYCLES
-#define _64_CLOCK_CYCLES _32_CLOCK_CYCLES; _32_CLOCK_CYCLES
-#define _128_CLOCK_CYCLES _64_CLOCK_CYCLES; _64_CLOCK_CYCLES
 
 /************************************************************************/
 /* Initialize app                                                       */
@@ -58,251 +50,7 @@ void core_callback_catastrophic_error_detected(void)
 /************************************************************************/
 /* User functions                                                       */
 /************************************************************************/
-void read_capacitance()
-{
-	uint16_t ch1 = 0;
-	uint16_t ch2 = 0;
-	uint16_t ch3 = 0;
-	uint16_t ch4 = 0;
-	
-	
-	// Start condition
-	set_SDA11;
-	set_SDA12;
-	set_SDA13;
-	set_SDA14;
-	set_SCL;
-	_32_CLOCK_CYCLES;
-	clr_SDA11;
-	clr_SDA12;
-	clr_SDA13;
-	clr_SDA14;
-	clr_SCL;
-	
-	uint8_t device_address = 0x90;
-	// _8_CLOCK_CYCLES;
-	for (uint8_t i = 0; i < 8; i++) 
-	{
-		if ((device_address<<i) & 0x80) {
-			set_SDA11;
-			set_SDA12;
-			set_SDA13;
-			set_SDA14;
-		}
-		else {
-			clr_SDA11;
-			clr_SDA12;
-			clr_SDA13;
-			clr_SDA14;
-		}
-		set_SCL;
-		_32_CLOCK_CYCLES;
-		clr_SCL;
-		_8_CLOCK_CYCLES;
-	}
 
-	clr_SDA11;
-	clr_SDA12;
-	clr_SDA13;
-	clr_SDA14;
-    // io_pin2in(&PORTD, 0, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-    // io_pin2in(&PORTD, 1, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-    // io_pin2in(&PORTD, 2, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-    // io_pin2in(&PORTD, 3, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-	set_SCL;
-	_32_CLOCK_CYCLES;
-	// read_SDA11; // Read acknowledge bit
-	// read_SDA12; // Read acknowledge bit
-	// read_SDA13; // Read acknowledge bit
-	// read_SDA14; // Read acknowledge bit
-	clr_SCL;
-	// io_pin2out(&PORTD, 0, OUT_IO_DIGITAL, IN_EN_IO_EN);
-    // io_pin2out(&PORTD, 1, OUT_IO_DIGITAL, IN_EN_IO_EN);
-    // io_pin2out(&PORTD, 2, OUT_IO_DIGITAL, IN_EN_IO_EN);
-    // io_pin2out(&PORTD, 3, OUT_IO_DIGITAL, IN_EN_IO_EN);
-
-	uint8_t command_byte = 0x01; // CH1 MSB
-	
-	_8_CLOCK_CYCLES;
-	for (uint8_t i = 0; i < 8; i++) 
-	{
-		if ((command_byte<<i) & 0x80) {
-			set_SDA11;
-			set_SDA12;
-			set_SDA13;
-			set_SDA14;
-		}
-		else {
-			clr_SDA11;
-			clr_SDA12;
-			clr_SDA13;
-			clr_SDA14;
-		}
-		set_SCL;
-		_32_CLOCK_CYCLES;
-		clr_SCL;
-		_8_CLOCK_CYCLES;
-	}
-	
-	clr_SDA11;
-	clr_SDA12;
-	clr_SDA13;
-	clr_SDA14;
-	// io_pin2in(&PORTD, 0, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-    // io_pin2in(&PORTD, 1, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-    // io_pin2in(&PORTD, 2, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-    // io_pin2in(&PORTD, 3, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-	set_SCL;
-	_32_CLOCK_CYCLES;
-	// read_SDA11; // Read acknowledge bit
-	// read_SDA12; // Read acknowledge bit
-	// read_SDA13; // Read acknowledge bit
-	// read_SDA14; // Read acknowledge bit
-	clr_SCL;
-	// io_pin2out(&PORTD, 0, OUT_IO_DIGITAL, IN_EN_IO_EN);
-    // io_pin2out(&PORTD, 1, OUT_IO_DIGITAL, IN_EN_IO_EN);
-    // io_pin2out(&PORTD, 2, OUT_IO_DIGITAL, IN_EN_IO_EN);
-    // io_pin2out(&PORTD, 3, OUT_IO_DIGITAL, IN_EN_IO_EN);
-	
-	// Start condition
-	_8_CLOCK_CYCLES;
-	set_SDA11;
-	set_SDA12;
-	set_SDA13;
-	set_SDA14;
-	set_SCL;
-	_32_CLOCK_CYCLES;
-	clr_SDA11;
-	clr_SDA12;
-	clr_SDA13;
-	clr_SDA14;
-	clr_SCL;
-	
-	device_address = 0x91;
-	
-	_8_CLOCK_CYCLES;
-	for (uint8_t i = 0; i < 8; i++) 
-	{
-		if ((device_address<<i) & 0x80) {
-			set_SDA11;
-			set_SDA12;
-			set_SDA13;
-			set_SDA14;
-		}
-		else {
-			clr_SDA11;
-			clr_SDA12;
-			clr_SDA13;
-			clr_SDA14;
-		}
-		set_SCL;
-		_32_CLOCK_CYCLES;
-		clr_SCL;
-		_8_CLOCK_CYCLES;
-	}
-	
-	clr_SDA11;
-	clr_SDA12;
-	clr_SDA13;
-	clr_SDA14;
-	set_SCL;
-	_32_CLOCK_CYCLES;
-	// read_SDA11; // Read acknowledge bit
-	// read_SDA12; // Read acknowledge bit
-	// read_SDA13; // Read acknowledge bit
-	// read_SDA14; // Read acknowledge bit
-	clr_SCL;
-
-	io_pin2in(&PORTD, 0, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-    io_pin2in(&PORTD, 1, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-    io_pin2in(&PORTD, 2, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-    io_pin2in(&PORTD, 3, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-	
-	// _8_CLOCK_CYCLES;
-	for (uint8_t i = 8; i > 0; i--) // read register 
-	{
-		set_SCL;
-		ch1 = (read_SDA11 << (i-1 + 8)) | ch1;
-		ch2 = (read_SDA12 << (i-2 + 8)) | ch2;
-		ch3 = (read_SDA13 << (i-3 + 8)) | ch3;
-		ch4 = (read_SDA14 << (i-4 + 8)) | ch4;
-		_1_CLOCK_CYCLES;
-		clr_SCL;
-		_16_CLOCK_CYCLES;
-	}
-
-	io_pin2out(&PORTD, 0, OUT_IO_DIGITAL, IN_EN_IO_EN);
-    io_pin2out(&PORTD, 1, OUT_IO_DIGITAL, IN_EN_IO_EN);
-    io_pin2out(&PORTD, 2, OUT_IO_DIGITAL, IN_EN_IO_EN);
-    io_pin2out(&PORTD, 3, OUT_IO_DIGITAL, IN_EN_IO_EN);
-		
-	clr_SDA11;
-	clr_SDA12;
-	clr_SDA13;
-	clr_SDA14;
-	set_SCL;
-	_32_CLOCK_CYCLES;
-	clr_SCL;
-
-	io_pin2in(&PORTD, 0, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-    io_pin2in(&PORTD, 1, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-    io_pin2in(&PORTD, 2, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-    io_pin2in(&PORTD, 3, PULL_IO_UP, SENSE_IO_EDGES_BOTH);
-	
-	// _8_CLOCK_CYCLES;
-	for (uint8_t i = 8; i > 0; i--) // read register 
-	{
-		set_SCL;
-		ch1 = (read_SDA11 << (i-1)) | ch1;
-		ch2 = (read_SDA12 << (i-2)) | ch2;
-		ch3 = (read_SDA13 << (i-3)) | ch3;
-		ch4 = (read_SDA14 << (i-4)) | ch4;
-		// _4_CLOCK_CYCLES;
-		clr_SCL;
-		_16_CLOCK_CYCLES;
-	}
-
-	io_pin2out(&PORTD, 0, OUT_IO_DIGITAL, IN_EN_IO_EN);
-    io_pin2out(&PORTD, 1, OUT_IO_DIGITAL, IN_EN_IO_EN);
-    io_pin2out(&PORTD, 2, OUT_IO_DIGITAL, IN_EN_IO_EN);
-    io_pin2out(&PORTD, 3, OUT_IO_DIGITAL, IN_EN_IO_EN);
-
-	set_SDA11;
-	set_SDA12;
-	set_SDA13;
-	set_SDA14;
-	set_SCL;
-	_32_CLOCK_CYCLES;
-	clr_SCL;
-	clr_SDA11;
-	clr_SDA12;
-	clr_SDA13;
-	clr_SDA14;
-	
-	_32_CLOCK_CYCLES;
-	set_SCL;
-	set_SDA11; 
-	set_SDA12; 
-	set_SDA13; 
-	set_SDA14; 
-	_32_CLOCK_CYCLES;
-	clr_SCL;
-	clr_SDA11;
-	clr_SDA12;
-	clr_SDA13;
-	clr_SDA14;
-
-	app_regs.REG_CAPACITANCE_VALUES[0] = ch1;
-	app_regs.REG_CAPACITANCE_VALUES[2] = ch2;
-	app_regs.REG_CAPACITANCE_VALUES[4] = ch3;
-	app_regs.REG_CAPACITANCE_VALUES[6] = ch4;
-
-	if (app_regs.REG_CAPACITANCE_VALUES[3] == 0) {
-		app_regs.REG_CAPACITANCE_VALUES[3] = 1;
-	} else {
-		app_regs.REG_CAPACITANCE_VALUES[3] = 0;
-	}
-}
 
 /************************************************************************/
 /* Initialization Callbacks                                             */
@@ -313,15 +61,16 @@ void core_callback_initialize_hardware(void)
 	/* Initialize IOs */
 	/* Don't delete this function!!! */
 	init_ios();
+	init_ios2();
 	
 	/* Initialize hardware */
-	
+
 }
 
 void core_callback_reset_registers(void)
 {
 	/* Initialize registers */
-	
+	app_regs.REG_ENABLE_EVENTS = MSK_DIGITAL_STATE;
 }
 
 void core_callback_registers_were_reinitialized(void)
@@ -347,12 +96,44 @@ void core_callback_device_to_speed(void) {}
 /************************************************************************/
 /* Callbacks: 1 ms timer                                                */
 /************************************************************************/
+uint8_t t1ms = 10;
 void core_callback_t_before_exec(void) {}
 void core_callback_t_after_exec(void) {}
 void core_callback_t_new_second(void) {}
-void core_callback_t_500us(void) {}
+void core_callback_t_500us(void) {
+	if (t1ms == 9) {
+		calculate_capacitance_3();
+		tgl_DO0;
+		calculate_capacitance_4();
+		tgl_DO0;
+		calculate_capacitance_5();
+		tgl_DO0;
+		calculate_capacitance_6();
+		tgl_DO0;
+
+	}
+}
 void core_callback_t_1ms(void) {
-	read_capacitance();
+	t1ms--;
+	if (t1ms == 9) {
+		core_func_mark_user_timestamp();
+		tgl_DO0;
+		read_capacitance();
+		tgl_DO0;
+		calculate_capacitance_1();
+		tgl_DO0;
+		calculate_capacitance_2();
+		tgl_DO0;
+	} else if (t1ms == 8) {
+		calculate_capacitance_7();
+		tgl_DO0;
+		calculate_capacitance_8();
+		tgl_DO0;
+		core_func_send_event(ADD_REG_CAPACITANCE_VALUES, false);
+	} else if (t1ms == 0) {
+		clr_DO0;
+		t1ms = 10;
+	}
 }
 
 /************************************************************************/
