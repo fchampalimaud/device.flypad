@@ -70,7 +70,7 @@ void core_callback_initialize_hardware(void)
 void core_callback_reset_registers(void)
 {
 	/* Initialize registers */
-	app_regs.REG_ENABLE_EVENTS = MSK_DIGITAL_STATE;
+	app_regs.REG_ENABLE_EVENTS = B_DIGITAL_INPUTS;
 }
 
 void core_callback_registers_were_reinitialized(void)
@@ -101,38 +101,44 @@ void core_callback_t_before_exec(void) {}
 void core_callback_t_after_exec(void) {}
 void core_callback_t_new_second(void) {}
 void core_callback_t_500us(void) {
-	if (t1ms == 9) {
-		calculate_capacitance_3();
-		tgl_DO0;
-		calculate_capacitance_4();
-		tgl_DO0;
-		calculate_capacitance_5();
-		tgl_DO0;
-		calculate_capacitance_6();
-		tgl_DO0;
+	if (app_regs.REG_ENABLE_ACQUISITION)
+	{
+		if (t1ms == 9) {
+			calculate_capacitance_3();
+			// tgl_DO0;
+			calculate_capacitance_4();
+			// tgl_DO0;
+			calculate_capacitance_5();
+			// tgl_DO0;
+			calculate_capacitance_6();
+			// tgl_DO0;
 
+		}
 	}
 }
 void core_callback_t_1ms(void) {
 	t1ms--;
-	if (t1ms == 9) {
-		core_func_mark_user_timestamp();
-		tgl_DO0;
-		read_capacitance();
-		tgl_DO0;
-		calculate_capacitance_1();
-		tgl_DO0;
-		calculate_capacitance_2();
-		tgl_DO0;
-	} else if (t1ms == 8) {
-		calculate_capacitance_7();
-		tgl_DO0;
-		calculate_capacitance_8();
-		tgl_DO0;
-		core_func_send_event(ADD_REG_CAPACITANCE_VALUES, false);
-	} else if (t1ms == 0) {
-		clr_DO0;
-		t1ms = 10;
+	if (app_regs.REG_ENABLE_ACQUISITION)
+	{
+		if (t1ms == 9) {
+			core_func_mark_user_timestamp();
+			// tgl_DO0;
+			read_capacitance();
+			// tgl_DO0;
+			calculate_capacitance_1();
+			// tgl_DO0;
+			calculate_capacitance_2();
+			// tgl_DO0;
+		} else if (t1ms == 8) {
+			calculate_capacitance_7();
+			// tgl_DO0;
+			calculate_capacitance_8();
+			// tgl_DO0;
+			core_func_send_event(ADD_REG_CAPACITANCE_VALUES, false);
+		} else if (t1ms == 0) {
+			// clr_DO0;
+			t1ms = 10;
+		}
 	}
 }
 

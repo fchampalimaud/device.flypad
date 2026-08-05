@@ -282,8 +282,7 @@ typedef struct
 {
     uint8_t REG_ENABLE_ACQUISITION;
     uint16_t REG_CAPACITANCE_VALUES[64];
-    uint8_t REG_DI0_STATE;
-    uint8_t REG_DI1_STATE;
+    uint8_t REG_DIGITAL_INPUT_STATE;
     uint8_t REG_DIGITAL_OUTPUT_SET;
     uint8_t REG_DIGITAL_OUTPUT_CLEAR;
     uint8_t REG_DIGITAL_OUTPUT_TOGGLE;
@@ -297,13 +296,12 @@ typedef struct
 /* Registers */
 #define ADD_REG_ENABLE_ACQUISITION       32 // U8     Starts or stops the data acquisition in all channels.
 #define ADD_REG_CAPACITANCE_VALUES       33 // U16    Value of ADC capacitance values for each channel (2 values per channel).
-#define ADD_REG_DI0_STATE                34 // U8     State of the digital input pin 0.
-#define ADD_REG_DI1_STATE                35 // U8     State of the digital input pin 1.
-#define ADD_REG_DIGITAL_OUTPUT_SET       36 // U8     Set the specified digital output lines.
-#define ADD_REG_DIGITAL_OUTPUT_CLEAR     37 // U8     Clears the specified digital output lines.
-#define ADD_REG_DIGITAL_OUTPUT_TOGGLE    38 // U8     Toggles the specified digital output lines.
-#define ADD_REG_DIGITAL_OUTPUT_STATE     39 // U8     Write the state of all digital output lines.
-#define ADD_REG_ENABLE_EVENTS            40 // U8     Specifies the active events in the device.
+#define ADD_REG_DIGITAL_INPUT_STATE      34 // U8     State of the digital inputs.
+#define ADD_REG_DIGITAL_OUTPUT_SET       35 // U8     Set the specified digital output lines.
+#define ADD_REG_DIGITAL_OUTPUT_CLEAR     36 // U8     Clears the specified digital output lines.
+#define ADD_REG_DIGITAL_OUTPUT_TOGGLE    37 // U8     Toggles the specified digital output lines.
+#define ADD_REG_DIGITAL_OUTPUT_STATE     38 // U8     Write the state of all digital output lines.
+#define ADD_REG_ENABLE_EVENTS            39 // U8     Specifies the active events in the device.
 
 /************************************************************************/
 /* FlyPAD registers' memory limits                                      */
@@ -313,18 +311,18 @@ typedef struct
 /************************************************************************/
 /* Memory limits */
 #define APP_REGS_ADD_MIN                    0x20
-#define APP_REGS_ADD_MAX                    0x28
-#define APP_NBYTES_OF_REG_BANK              136
+#define APP_REGS_ADD_MAX                    0x27
+#define APP_NBYTES_OF_REG_BANK              135
 
 /************************************************************************/
 /* Registers' bits                                                      */
 /************************************************************************/
-#define B_DO0                    (1<<0)       // 
-#define B_DO1                    (1<<1)       // 
-#define B_DO2                    (1<<2)       // 
-#define B_DO3                    (1<<3)       // 
-#define MSK_DIGITAL_STATE        0x01         // 
-#define GM_DIGITAL_STATE_LOW     0x00         // 
-#define GM_DIGITAL_STATE_HIGH    0x01         // 
+#define B_DI0                 (1<<0)       // 
+#define B_DI1                 (1<<1)       // 
+#define B_DO0                 (1<<0)       // 
+#define B_DO1                 (1<<1)       // 
+#define B_DO2                 (1<<2)       // 
+#define B_DO3                 (1<<3)       // 
+#define B_DIGITAL_INPUTS      (1<<0)       // 
 
 #endif /* _APP_REGS_H_ */

@@ -31,16 +31,16 @@ extern AppRegs app_regs;
 /************************************************************************/
 ISR(PORTB_INT0_vect, ISR_NAKED)
 {
-	uint8_t reg_port_dis = app_regs.REG_DI0_STATE;
+	uint8_t reg_port_dis = app_regs.REG_DIGITAL_INPUT_STATE;
 	
-	app_regs.REG_DI0_STATE &= ~GM_DIGITAL_STATE_HIGH;
-	app_regs.REG_DI0_STATE |= (read_DI0) ? GM_DIGITAL_STATE_HIGH : 0;
+	app_regs.REG_DIGITAL_INPUT_STATE &= ~B_DI0;
+	app_regs.REG_DIGITAL_INPUT_STATE |= (read_DI0) ? B_DI0 : 0;
 	
-	if (app_regs.REG_ENABLE_EVENTS & MSK_DIGITAL_STATE)
+	if (app_regs.REG_ENABLE_EVENTS & B_DIGITAL_INPUTS)
 	{
-		if (reg_port_dis != app_regs.REG_DI0_STATE)
+		if (reg_port_dis != app_regs.REG_DIGITAL_INPUT_STATE)
 		{
-			core_func_send_event(ADD_REG_DI0_STATE, true);
+			core_func_send_event(ADD_REG_DIGITAL_INPUT_STATE, true);
 		}
 	}
 
@@ -52,16 +52,16 @@ ISR(PORTB_INT0_vect, ISR_NAKED)
 /************************************************************************/
 ISR(PORTC_INT0_vect, ISR_NAKED)
 {
-	uint8_t reg_port_dis = app_regs.REG_DI1_STATE;
+	uint8_t reg_port_dis = app_regs.REG_DIGITAL_INPUT_STATE;
 	
-	app_regs.REG_DI1_STATE &= ~GM_DIGITAL_STATE_HIGH;
-	app_regs.REG_DI1_STATE |= (read_DI1) ? GM_DIGITAL_STATE_HIGH : 0;
+	app_regs.REG_DIGITAL_INPUT_STATE &= ~B_DI1;
+	app_regs.REG_DIGITAL_INPUT_STATE |= (read_DI1) ? B_DI1 : 0;
 	
-	if (app_regs.REG_ENABLE_EVENTS & MSK_DIGITAL_STATE)
+	if (app_regs.REG_ENABLE_EVENTS & B_DIGITAL_INPUTS)
 	{
-		if (reg_port_dis != app_regs.REG_DI1_STATE)
+		if (reg_port_dis != app_regs.REG_DIGITAL_INPUT_STATE)
 		{
-			core_func_send_event(ADD_REG_DI1_STATE, true);
+			core_func_send_event(ADD_REG_DIGITAL_INPUT_STATE, true);
 		}
 	}
 

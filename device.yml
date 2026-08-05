@@ -18,45 +18,44 @@ registers:
     length: 64
     type: U16
     description: Value of ADC capacitance values for each channel (2 values per channel).
-  DI0State:
+  DigitalInputState:
     address: 34
     access: Event
     type: U8
-    maskType: DigitalState
-    description: State of the digital input pin 0.
-  DI1State:
-    address: 35
-    access: Event
-    type: U8
-    maskType: DigitalState
-    description: State of the digital input pin 1.
+    maskType: DigitalInputs
+    description: State of the digital inputs.
   DigitalOutputSet: &outputs
-    address: 36
+    address: 35
     access: Write
     type: U8
     maskType: DigitalOutputs
     description: Set the specified digital output lines.
   DigitalOutputClear:
     <<: *outputs
-    address: 37
+    address: 36
     description: Clears the specified digital output lines.
   DigitalOutputToggle:
     <<: *outputs
-    address: 38
+    address: 37
     description: Toggles the specified digital output lines.
   DigitalOutputState:
-    address: 39
+    address: 38
     access: Write
     type: U8
     maskType: DigitalOutputs
     description: Write the state of all digital output lines.
   EnableEvents:
-    address: 40
+    address: 39
     access: Write
     type: U8
     maskType: Events
     description: Specifies the active events in the device.
 bitMasks:
+  DigitalInputs:
+    description: Specifies the state of the digital inputs.
+    bits:
+      DI0: 0x1
+      DI1: 0x2
   DigitalOutputs:
     description: Specifies the state of the digital outputs.
     bits:
@@ -68,9 +67,3 @@ bitMasks:
     description: Specifies the events to be sent.
     bits:
       DigitalInputs: 0x1
-groupMasks:
-  DigitalState:
-    description: The state of a digital pin.
-    values:
-      Low: 0
-      High: 1
