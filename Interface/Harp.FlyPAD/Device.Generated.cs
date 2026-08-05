@@ -39,13 +39,12 @@ namespace Harp.FlyPAD
         {
             { 32, typeof(EnableAcquisition) },
             { 33, typeof(CapacitanceValues) },
-            { 34, typeof(DI0State) },
-            { 35, typeof(DI1State) },
-            { 36, typeof(DigitalOutputSet) },
-            { 37, typeof(DigitalOutputClear) },
-            { 38, typeof(DigitalOutputToggle) },
-            { 39, typeof(DigitalOutputState) },
-            { 40, typeof(EnableEvents) }
+            { 34, typeof(DigitalInputState) },
+            { 35, typeof(DigitalOutputSet) },
+            { 36, typeof(DigitalOutputClear) },
+            { 37, typeof(DigitalOutputToggle) },
+            { 38, typeof(DigitalOutputState) },
+            { 39, typeof(EnableEvents) }
         };
 
         /// <summary>
@@ -262,8 +261,7 @@ namespace Harp.FlyPAD
     /// </summary>
     /// <seealso cref="EnableAcquisition"/>
     /// <seealso cref="CapacitanceValues"/>
-    /// <seealso cref="DI0State"/>
-    /// <seealso cref="DI1State"/>
+    /// <seealso cref="DigitalInputState"/>
     /// <seealso cref="DigitalOutputSet"/>
     /// <seealso cref="DigitalOutputClear"/>
     /// <seealso cref="DigitalOutputToggle"/>
@@ -271,8 +269,7 @@ namespace Harp.FlyPAD
     /// <seealso cref="EnableEvents"/>
     [XmlInclude(typeof(EnableAcquisition))]
     [XmlInclude(typeof(CapacitanceValues))]
-    [XmlInclude(typeof(DI0State))]
-    [XmlInclude(typeof(DI1State))]
+    [XmlInclude(typeof(DigitalInputState))]
     [XmlInclude(typeof(DigitalOutputSet))]
     [XmlInclude(typeof(DigitalOutputClear))]
     [XmlInclude(typeof(DigitalOutputToggle))]
@@ -301,8 +298,7 @@ namespace Harp.FlyPAD
     /// </summary>
     /// <seealso cref="EnableAcquisition"/>
     /// <seealso cref="CapacitanceValues"/>
-    /// <seealso cref="DI0State"/>
-    /// <seealso cref="DI1State"/>
+    /// <seealso cref="DigitalInputState"/>
     /// <seealso cref="DigitalOutputSet"/>
     /// <seealso cref="DigitalOutputClear"/>
     /// <seealso cref="DigitalOutputToggle"/>
@@ -310,8 +306,7 @@ namespace Harp.FlyPAD
     /// <seealso cref="EnableEvents"/>
     [XmlInclude(typeof(EnableAcquisition))]
     [XmlInclude(typeof(CapacitanceValues))]
-    [XmlInclude(typeof(DI0State))]
-    [XmlInclude(typeof(DI1State))]
+    [XmlInclude(typeof(DigitalInputState))]
     [XmlInclude(typeof(DigitalOutputSet))]
     [XmlInclude(typeof(DigitalOutputClear))]
     [XmlInclude(typeof(DigitalOutputToggle))]
@@ -319,8 +314,7 @@ namespace Harp.FlyPAD
     [XmlInclude(typeof(EnableEvents))]
     [XmlInclude(typeof(TimestampedEnableAcquisition))]
     [XmlInclude(typeof(TimestampedCapacitanceValues))]
-    [XmlInclude(typeof(TimestampedDI0State))]
-    [XmlInclude(typeof(TimestampedDI1State))]
+    [XmlInclude(typeof(TimestampedDigitalInputState))]
     [XmlInclude(typeof(TimestampedDigitalOutputSet))]
     [XmlInclude(typeof(TimestampedDigitalOutputClear))]
     [XmlInclude(typeof(TimestampedDigitalOutputToggle))]
@@ -346,8 +340,7 @@ namespace Harp.FlyPAD
     /// </summary>
     /// <seealso cref="EnableAcquisition"/>
     /// <seealso cref="CapacitanceValues"/>
-    /// <seealso cref="DI0State"/>
-    /// <seealso cref="DI1State"/>
+    /// <seealso cref="DigitalInputState"/>
     /// <seealso cref="DigitalOutputSet"/>
     /// <seealso cref="DigitalOutputClear"/>
     /// <seealso cref="DigitalOutputToggle"/>
@@ -355,8 +348,7 @@ namespace Harp.FlyPAD
     /// <seealso cref="EnableEvents"/>
     [XmlInclude(typeof(EnableAcquisition))]
     [XmlInclude(typeof(CapacitanceValues))]
-    [XmlInclude(typeof(DI0State))]
-    [XmlInclude(typeof(DI1State))]
+    [XmlInclude(typeof(DigitalInputState))]
     [XmlInclude(typeof(DigitalOutputSet))]
     [XmlInclude(typeof(DigitalOutputClear))]
     [XmlInclude(typeof(DigitalOutputToggle))]
@@ -570,73 +562,73 @@ namespace Harp.FlyPAD
     }
 
     /// <summary>
-    /// Represents a register that state of the digital input pin 0.
+    /// Represents a register that state of the digital inputs.
     /// </summary>
-    [Description("State of the digital input pin 0.")]
-    public partial class DI0State
+    [Description("State of the digital inputs.")]
+    public partial class DigitalInputState
     {
         /// <summary>
-        /// Represents the address of the <see cref="DI0State"/> register. This field is constant.
+        /// Represents the address of the <see cref="DigitalInputState"/> register. This field is constant.
         /// </summary>
         public const int Address = 34;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="DI0State"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="DigitalInputState"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U8;
 
         /// <summary>
-        /// Represents the length of the <see cref="DI0State"/> register. This field is constant.
+        /// Represents the length of the <see cref="DigitalInputState"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="DI0State"/> register messages.
+        /// Returns the payload data for <see cref="DigitalInputState"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static DigitalState GetPayload(HarpMessage message)
+        public static DigitalInputs GetPayload(HarpMessage message)
         {
-            return (DigitalState)message.GetPayloadByte();
+            return (DigitalInputs)message.GetPayloadByte();
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="DI0State"/> register messages.
+        /// Returns the timestamped payload data for <see cref="DigitalInputState"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<DigitalState> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<DigitalInputs> GetTimestampedPayload(HarpMessage message)
         {
             var payload = message.GetTimestampedPayloadByte();
-            return Timestamped.Create((DigitalState)payload.Value, payload.Seconds);
+            return Timestamped.Create((DigitalInputs)payload.Value, payload.Seconds);
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="DI0State"/> register.
+        /// Returns a Harp message for the <see cref="DigitalInputState"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DI0State"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DigitalInputState"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, DigitalState value)
+        public static HarpMessage FromPayload(MessageType messageType, DigitalInputs value)
         {
             return HarpMessage.FromByte(Address, messageType, (byte)value);
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="DI0State"/>
+        /// Returns a timestamped Harp message for the <see cref="DigitalInputState"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DI0State"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="DigitalInputState"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, DigitalState value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, DigitalInputs value)
         {
             return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
         }
@@ -644,122 +636,25 @@ namespace Harp.FlyPAD
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// DI0State register.
+    /// DigitalInputState register.
     /// </summary>
-    /// <seealso cref="DI0State"/>
-    [Description("Filters and selects timestamped messages from the DI0State register.")]
-    public partial class TimestampedDI0State
+    /// <seealso cref="DigitalInputState"/>
+    [Description("Filters and selects timestamped messages from the DigitalInputState register.")]
+    public partial class TimestampedDigitalInputState
     {
         /// <summary>
-        /// Represents the address of the <see cref="DI0State"/> register. This field is constant.
+        /// Represents the address of the <see cref="DigitalInputState"/> register. This field is constant.
         /// </summary>
-        public const int Address = DI0State.Address;
+        public const int Address = DigitalInputState.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="DI0State"/> register messages.
+        /// Returns timestamped payload data for <see cref="DigitalInputState"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<DigitalState> GetPayload(HarpMessage message)
+        public static Timestamped<DigitalInputs> GetPayload(HarpMessage message)
         {
-            return DI0State.GetTimestampedPayload(message);
-        }
-    }
-
-    /// <summary>
-    /// Represents a register that state of the digital input pin 1.
-    /// </summary>
-    [Description("State of the digital input pin 1.")]
-    public partial class DI1State
-    {
-        /// <summary>
-        /// Represents the address of the <see cref="DI1State"/> register. This field is constant.
-        /// </summary>
-        public const int Address = 35;
-
-        /// <summary>
-        /// Represents the payload type of the <see cref="DI1State"/> register. This field is constant.
-        /// </summary>
-        public const PayloadType RegisterType = PayloadType.U8;
-
-        /// <summary>
-        /// Represents the length of the <see cref="DI1State"/> register. This field is constant.
-        /// </summary>
-        public const int RegisterLength = 1;
-
-        /// <summary>
-        /// Returns the payload data for <see cref="DI1State"/> register messages.
-        /// </summary>
-        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
-        /// <returns>A value representing the message payload.</returns>
-        public static DigitalState GetPayload(HarpMessage message)
-        {
-            return (DigitalState)message.GetPayloadByte();
-        }
-
-        /// <summary>
-        /// Returns the timestamped payload data for <see cref="DI1State"/> register messages.
-        /// </summary>
-        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
-        /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<DigitalState> GetTimestampedPayload(HarpMessage message)
-        {
-            var payload = message.GetTimestampedPayloadByte();
-            return Timestamped.Create((DigitalState)payload.Value, payload.Seconds);
-        }
-
-        /// <summary>
-        /// Returns a Harp message for the <see cref="DI1State"/> register.
-        /// </summary>
-        /// <param name="messageType">The type of the Harp message.</param>
-        /// <param name="value">The value to be stored in the message payload.</param>
-        /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DI1State"/> register
-        /// with the specified message type and payload.
-        /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, DigitalState value)
-        {
-            return HarpMessage.FromByte(Address, messageType, (byte)value);
-        }
-
-        /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="DI1State"/>
-        /// register.
-        /// </summary>
-        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
-        /// <param name="messageType">The type of the Harp message.</param>
-        /// <param name="value">The value to be stored in the message payload.</param>
-        /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="DI1State"/> register
-        /// with the specified message type, timestamp, and payload.
-        /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, DigitalState value)
-        {
-            return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
-        }
-    }
-
-    /// <summary>
-    /// Provides methods for manipulating timestamped messages from the
-    /// DI1State register.
-    /// </summary>
-    /// <seealso cref="DI1State"/>
-    [Description("Filters and selects timestamped messages from the DI1State register.")]
-    public partial class TimestampedDI1State
-    {
-        /// <summary>
-        /// Represents the address of the <see cref="DI1State"/> register. This field is constant.
-        /// </summary>
-        public const int Address = DI1State.Address;
-
-        /// <summary>
-        /// Returns timestamped payload data for <see cref="DI1State"/> register messages.
-        /// </summary>
-        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
-        /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<DigitalState> GetPayload(HarpMessage message)
-        {
-            return DI1State.GetTimestampedPayload(message);
+            return DigitalInputState.GetTimestampedPayload(message);
         }
     }
 
@@ -772,7 +667,7 @@ namespace Harp.FlyPAD
         /// <summary>
         /// Represents the address of the <see cref="DigitalOutputSet"/> register. This field is constant.
         /// </summary>
-        public const int Address = 36;
+        public const int Address = 35;
 
         /// <summary>
         /// Represents the payload type of the <see cref="DigitalOutputSet"/> register. This field is constant.
@@ -869,7 +764,7 @@ namespace Harp.FlyPAD
         /// <summary>
         /// Represents the address of the <see cref="DigitalOutputClear"/> register. This field is constant.
         /// </summary>
-        public const int Address = 37;
+        public const int Address = 36;
 
         /// <summary>
         /// Represents the payload type of the <see cref="DigitalOutputClear"/> register. This field is constant.
@@ -966,7 +861,7 @@ namespace Harp.FlyPAD
         /// <summary>
         /// Represents the address of the <see cref="DigitalOutputToggle"/> register. This field is constant.
         /// </summary>
-        public const int Address = 38;
+        public const int Address = 37;
 
         /// <summary>
         /// Represents the payload type of the <see cref="DigitalOutputToggle"/> register. This field is constant.
@@ -1063,7 +958,7 @@ namespace Harp.FlyPAD
         /// <summary>
         /// Represents the address of the <see cref="DigitalOutputState"/> register. This field is constant.
         /// </summary>
-        public const int Address = 39;
+        public const int Address = 38;
 
         /// <summary>
         /// Represents the payload type of the <see cref="DigitalOutputState"/> register. This field is constant.
@@ -1160,7 +1055,7 @@ namespace Harp.FlyPAD
         /// <summary>
         /// Represents the address of the <see cref="EnableEvents"/> register. This field is constant.
         /// </summary>
-        public const int Address = 40;
+        public const int Address = 39;
 
         /// <summary>
         /// Represents the payload type of the <see cref="EnableEvents"/> register. This field is constant.
@@ -1254,8 +1149,7 @@ namespace Harp.FlyPAD
     /// </summary>
     /// <seealso cref="CreateEnableAcquisitionPayload"/>
     /// <seealso cref="CreateCapacitanceValuesPayload"/>
-    /// <seealso cref="CreateDI0StatePayload"/>
-    /// <seealso cref="CreateDI1StatePayload"/>
+    /// <seealso cref="CreateDigitalInputStatePayload"/>
     /// <seealso cref="CreateDigitalOutputSetPayload"/>
     /// <seealso cref="CreateDigitalOutputClearPayload"/>
     /// <seealso cref="CreateDigitalOutputTogglePayload"/>
@@ -1263,8 +1157,7 @@ namespace Harp.FlyPAD
     /// <seealso cref="CreateEnableEventsPayload"/>
     [XmlInclude(typeof(CreateEnableAcquisitionPayload))]
     [XmlInclude(typeof(CreateCapacitanceValuesPayload))]
-    [XmlInclude(typeof(CreateDI0StatePayload))]
-    [XmlInclude(typeof(CreateDI1StatePayload))]
+    [XmlInclude(typeof(CreateDigitalInputStatePayload))]
     [XmlInclude(typeof(CreateDigitalOutputSetPayload))]
     [XmlInclude(typeof(CreateDigitalOutputClearPayload))]
     [XmlInclude(typeof(CreateDigitalOutputTogglePayload))]
@@ -1272,8 +1165,7 @@ namespace Harp.FlyPAD
     [XmlInclude(typeof(CreateEnableEventsPayload))]
     [XmlInclude(typeof(CreateTimestampedEnableAcquisitionPayload))]
     [XmlInclude(typeof(CreateTimestampedCapacitanceValuesPayload))]
-    [XmlInclude(typeof(CreateTimestampedDI0StatePayload))]
-    [XmlInclude(typeof(CreateTimestampedDI1StatePayload))]
+    [XmlInclude(typeof(CreateTimestampedDigitalInputStatePayload))]
     [XmlInclude(typeof(CreateTimestampedDigitalOutputSetPayload))]
     [XmlInclude(typeof(CreateTimestampedDigitalOutputClearPayload))]
     [XmlInclude(typeof(CreateTimestampedDigitalOutputTogglePayload))]
@@ -1403,109 +1295,55 @@ namespace Harp.FlyPAD
 
     /// <summary>
     /// Represents an operator that creates a message payload
-    /// that state of the digital input pin 0.
+    /// that state of the digital inputs.
     /// </summary>
-    [DisplayName("DI0StatePayload")]
-    [Description("Creates a message payload that state of the digital input pin 0.")]
-    public partial class CreateDI0StatePayload
+    [DisplayName("DigitalInputStatePayload")]
+    [Description("Creates a message payload that state of the digital inputs.")]
+    public partial class CreateDigitalInputStatePayload
     {
         /// <summary>
-        /// Gets or sets the value that state of the digital input pin 0.
+        /// Gets or sets the value that state of the digital inputs.
         /// </summary>
-        [Description("The value that state of the digital input pin 0.")]
-        public DigitalState DI0State { get; set; }
+        [Description("The value that state of the digital inputs.")]
+        public DigitalInputs DigitalInputState { get; set; }
 
         /// <summary>
-        /// Creates a message payload for the DI0State register.
+        /// Creates a message payload for the DigitalInputState register.
         /// </summary>
         /// <returns>The created message payload value.</returns>
-        public DigitalState GetPayload()
+        public DigitalInputs GetPayload()
         {
-            return DI0State;
+            return DigitalInputState;
         }
 
         /// <summary>
-        /// Creates a message that state of the digital input pin 0.
+        /// Creates a message that state of the digital inputs.
         /// </summary>
         /// <param name="messageType">Specifies the type of the created message.</param>
-        /// <returns>A new message for the DI0State register.</returns>
+        /// <returns>A new message for the DigitalInputState register.</returns>
         public HarpMessage GetMessage(MessageType messageType)
         {
-            return Harp.FlyPAD.DI0State.FromPayload(messageType, GetPayload());
+            return Harp.FlyPAD.DigitalInputState.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
     /// Represents an operator that creates a timestamped message payload
-    /// that state of the digital input pin 0.
+    /// that state of the digital inputs.
     /// </summary>
-    [DisplayName("TimestampedDI0StatePayload")]
-    [Description("Creates a timestamped message payload that state of the digital input pin 0.")]
-    public partial class CreateTimestampedDI0StatePayload : CreateDI0StatePayload
+    [DisplayName("TimestampedDigitalInputStatePayload")]
+    [Description("Creates a timestamped message payload that state of the digital inputs.")]
+    public partial class CreateTimestampedDigitalInputStatePayload : CreateDigitalInputStatePayload
     {
         /// <summary>
-        /// Creates a timestamped message that state of the digital input pin 0.
+        /// Creates a timestamped message that state of the digital inputs.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">Specifies the type of the created message.</param>
-        /// <returns>A new timestamped message for the DI0State register.</returns>
+        /// <returns>A new timestamped message for the DigitalInputState register.</returns>
         public HarpMessage GetMessage(double timestamp, MessageType messageType)
         {
-            return Harp.FlyPAD.DI0State.FromPayload(timestamp, messageType, GetPayload());
-        }
-    }
-
-    /// <summary>
-    /// Represents an operator that creates a message payload
-    /// that state of the digital input pin 1.
-    /// </summary>
-    [DisplayName("DI1StatePayload")]
-    [Description("Creates a message payload that state of the digital input pin 1.")]
-    public partial class CreateDI1StatePayload
-    {
-        /// <summary>
-        /// Gets or sets the value that state of the digital input pin 1.
-        /// </summary>
-        [Description("The value that state of the digital input pin 1.")]
-        public DigitalState DI1State { get; set; }
-
-        /// <summary>
-        /// Creates a message payload for the DI1State register.
-        /// </summary>
-        /// <returns>The created message payload value.</returns>
-        public DigitalState GetPayload()
-        {
-            return DI1State;
-        }
-
-        /// <summary>
-        /// Creates a message that state of the digital input pin 1.
-        /// </summary>
-        /// <param name="messageType">Specifies the type of the created message.</param>
-        /// <returns>A new message for the DI1State register.</returns>
-        public HarpMessage GetMessage(MessageType messageType)
-        {
-            return Harp.FlyPAD.DI1State.FromPayload(messageType, GetPayload());
-        }
-    }
-
-    /// <summary>
-    /// Represents an operator that creates a timestamped message payload
-    /// that state of the digital input pin 1.
-    /// </summary>
-    [DisplayName("TimestampedDI1StatePayload")]
-    [Description("Creates a timestamped message payload that state of the digital input pin 1.")]
-    public partial class CreateTimestampedDI1StatePayload : CreateDI1StatePayload
-    {
-        /// <summary>
-        /// Creates a timestamped message that state of the digital input pin 1.
-        /// </summary>
-        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
-        /// <param name="messageType">Specifies the type of the created message.</param>
-        /// <returns>A new timestamped message for the DI1State register.</returns>
-        public HarpMessage GetMessage(double timestamp, MessageType messageType)
-        {
-            return Harp.FlyPAD.DI1State.FromPayload(timestamp, messageType, GetPayload());
+            return Harp.FlyPAD.DigitalInputState.FromPayload(timestamp, messageType, GetPayload());
         }
     }
 
@@ -1780,6 +1618,17 @@ namespace Harp.FlyPAD
     }
 
     /// <summary>
+    /// Specifies the state of the digital inputs.
+    /// </summary>
+    [Flags]
+    public enum DigitalInputs : byte
+    {
+        None = 0x0,
+        DI0 = 0x1,
+        DI1 = 0x2
+    }
+
+    /// <summary>
     /// Specifies the state of the digital outputs.
     /// </summary>
     [Flags]
@@ -1800,15 +1649,6 @@ namespace Harp.FlyPAD
     {
         None = 0x0,
         DigitalInputs = 0x1
-    }
-
-    /// <summary>
-    /// The state of a digital pin.
-    /// </summary>
-    public enum DigitalState : byte
-    {
-        Low = 0,
-        High = 1
     }
 
     internal static partial class PayloadMarshal

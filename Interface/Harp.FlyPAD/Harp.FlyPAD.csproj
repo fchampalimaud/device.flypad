@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Title>FlyPAD</Title>
+    <Title>Harp.FlyPAD</Title>
     <Authors></Authors>
     <Copyright>Copyright ©  2026</Copyright>
     <IncludeSymbols>true</IncludeSymbols>
@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bonsai.Harp" Version="3.5.0" />
+    <PackageReference Include="Bonsai.Harp" Version="3.6.1" />
   </ItemGroup>
 
   <ItemGroup>
