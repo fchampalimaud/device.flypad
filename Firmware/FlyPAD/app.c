@@ -88,7 +88,11 @@ void core_callback_visualen_to_off(void) {}
 /************************************************************************/
 /* Callbacks: Change to the operation mode                              */
 /************************************************************************/
-void core_callback_device_to_standby(void) {}
+void core_callback_device_to_standby(void) {
+	
+	app_regs.REG_ENABLE_ACQUISITION = 0;
+	
+}
 void core_callback_device_to_active(void) {}
 void core_callback_device_to_enchanced_active(void) {}
 void core_callback_device_to_speed(void) {}
@@ -104,6 +108,7 @@ void core_callback_t_500us(void) {
 	if (app_regs.REG_ENABLE_ACQUISITION)
 	{
 		if (t1ms == 9) {
+			set_DO3;
 			calculate_capacitance_3();
 			// tgl_DO0;
 			calculate_capacitance_4();
@@ -112,6 +117,7 @@ void core_callback_t_500us(void) {
 			// tgl_DO0;
 			calculate_capacitance_6();
 			// tgl_DO0;
+			clr_DO3;
 
 		}
 	}
@@ -122,19 +128,21 @@ void core_callback_t_1ms(void) {
 	{
 		if (t1ms == 9) {
 			core_func_mark_user_timestamp();
-			// tgl_DO0;
+			set_DO0;
 			read_capacitance();
 			// tgl_DO0;
 			calculate_capacitance_1();
 			// tgl_DO0;
 			calculate_capacitance_2();
-			// tgl_DO0;
+			clr_DO0;
 		} else if (t1ms == 8) {
+			set_DO1;
 			calculate_capacitance_7();
 			// tgl_DO0;
 			calculate_capacitance_8();
 			// tgl_DO0;
 			core_func_send_event(ADD_REG_CAPACITANCE_VALUES, false);
+			clr_DO1;
 		} else if (t1ms == 0) {
 			// clr_DO0;
 			t1ms = 10;
