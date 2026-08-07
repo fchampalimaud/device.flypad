@@ -107,44 +107,39 @@ void core_callback_t_new_second(void) {}
 void core_callback_t_500us(void) {
 	if (app_regs.REG_ENABLE_ACQUISITION)
 	{
+		//320us
 		if (t1ms == 9) {
-			set_DO3;
-			calculate_capacitance_3();
-			// tgl_DO0;
+			set_DO0;
 			calculate_capacitance_4();
-			// tgl_DO0;
 			calculate_capacitance_5();
-			// tgl_DO0;
 			calculate_capacitance_6();
-			// tgl_DO0;
-			clr_DO3;
+			calculate_capacitance_7();
+			calculate_capacitance_8();
+			core_func_send_event(ADD_REG_CAPACITANCE_VALUES, false);
+			clr_DO0;
 
 		}
+		if (t1ms == 8) {
+		}	
 	}
 }
 void core_callback_t_1ms(void) {
 	t1ms--;
 	if (app_regs.REG_ENABLE_ACQUISITION)
 	{
+		//330us
 		if (t1ms == 9) {
-			core_func_mark_user_timestamp();
 			set_DO0;
+			core_func_mark_user_timestamp();
+			
 			read_capacitance();
-			// tgl_DO0;
 			calculate_capacitance_1();
-			// tgl_DO0;
 			calculate_capacitance_2();
+			calculate_capacitance_3();
 			clr_DO0;
 		} else if (t1ms == 8) {
-			set_DO1;
-			calculate_capacitance_7();
-			// tgl_DO0;
-			calculate_capacitance_8();
-			// tgl_DO0;
-			core_func_send_event(ADD_REG_CAPACITANCE_VALUES, false);
-			clr_DO1;
+			
 		} else if (t1ms == 0) {
-			// clr_DO0;
 			t1ms = 10;
 		}
 	}
