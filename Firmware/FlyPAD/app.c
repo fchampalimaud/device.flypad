@@ -110,12 +110,13 @@ void core_callback_t_500us(void) {
 		//320us
 		if (t1ms == 9) {
 			set_DO0;
+			calculate_capacitance_1();
+			calculate_capacitance_2();
+			calculate_capacitance_3();
 			calculate_capacitance_4();
 			calculate_capacitance_5();
 			calculate_capacitance_6();
-			calculate_capacitance_7();
-			calculate_capacitance_8();
-			core_func_send_event(ADD_REG_CAPACITANCE_VALUES, false);
+			
 			clr_DO0;
 
 		}
@@ -133,12 +134,14 @@ void core_callback_t_1ms(void) {
 			core_func_mark_user_timestamp();
 			
 			read_capacitance();
-			calculate_capacitance_1();
-			calculate_capacitance_2();
-			calculate_capacitance_3();
+			
 			clr_DO0;
 		} else if (t1ms == 8) {
-			
+			set_DO0;
+			calculate_capacitance_7();
+			calculate_capacitance_8();
+			core_func_send_event(ADD_REG_CAPACITANCE_VALUES, false);
+			clr_DO0;
 		} else if (t1ms == 0) {
 			t1ms = 10;
 		}
